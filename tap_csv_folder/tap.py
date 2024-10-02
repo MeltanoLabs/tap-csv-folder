@@ -5,7 +5,7 @@ from __future__ import annotations
 import singer_sdk.typing as th
 from singer_sdk.contrib.filesystem import FolderTap
 
-from tap_csvfolder.client import CSVStream
+from tap_csv_folder.client import CSVStream
 
 
 class TapCSVFolder(FolderTap):

@@ -1,11 +1,11 @@
-name: Test tap-csvfolder
+name: Test tap-csv-folder
 
 on:
   push:
     branches: [main]
     paths:
     - .github/workflows/test.yml
-    - tap_csvfolder/**
+    - tap_csv_folder/**
     - tests/**
     - poetry.lock
     - pyproject.toml
@@ -14,7 +14,7 @@ on:
     branches: [main]
     paths:
     - .github/workflows/test.yml
-    - tap_csvfolder/**
+    - tap_csv_folder/**
     - tests/**
     - poetry.lock
     - pyproject.toml

@@ -2,6 +2,6 @@
 
 from __future__ import annotations
 
-from tap_csvfolder.tap import TapCSVFolder
+from tap_csv_folder.tap import TapCSVFolder
 
 TapCSVFolder.cli()

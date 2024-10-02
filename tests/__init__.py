@@ -1,1 +1,1 @@
-"""Test suite for tap-csvfolder."""
+"""Test suite for tap-csv-folder."""

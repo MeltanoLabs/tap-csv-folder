@@ -1,4 +1,4 @@
-"""Sample Tap for CSV files."""
+"""Singer Tap for CSV files in a folder."""
 
 from __future__ import annotations
 
@@ -9,9 +9,9 @@ from tap_csv_folder.client import CSVStream
 
 
 class TapCSVFolder(FolderTap):
-    """Sample Tap for CSV files."""
+    """Singer tap for CSV files in a folder."""
 
-    name = "sample-tap-csv"
+    name = "tap-csv-folder"
     valid_extensions: tuple[str, ...] = (".csv",)
     default_stream_class = CSVStream
 

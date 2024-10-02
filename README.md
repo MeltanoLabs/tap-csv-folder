@@ -28,8 +28,6 @@ Install in a Meltano project:
 meltano add tap-csvfolder
 ```
 
--->
-
 ## Configuration
 
 ### Accepted Config Options

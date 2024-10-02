@@ -1,0 +1,73 @@
+[tool.poetry]
+name = "MeltanoLabs-tap-csvfolder"
+version = "0.0.1"
+description = "Singer tap for CSVFolder, built with the Meltano Singer SDK."
+readme = "README.md"
+authors = ["Edgar Ramírez-Mondragón <edgar@arch.dev>"]
+keywords = [
+    "ELT",
+    "CSVFolder",
+]
+classifiers = [
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+license = "Apache-2.0"
+packages = [
+    { include = "tap_csvfolder" },
+]
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+
+# Dev extras
+pytest = { version = ">=8", optional = true }
+
+[tool.poetry.dependencies.singer-sdk]
+git = "https://github.com/meltano/sdk.git"
+rev = "2648-feat-add-a-generic-filestream-interface"
+extras = ["s3", "ssh"]
+
+[tool.poetry.extras]
+testing = ["pytest"]
+
+[tool.pytest.ini_options]
+addopts = '--durations=10'
+
+[tool.mypy]
+python_version = "3.12"
+warn_unused_configs = true
+
+[tool.ruff]
+src = ["tap_csvfolder"]
+target-version = "py39"
+
+[tool.ruff.lint]
+ignore = [
+    "ANN101",  # missing-type-self
+    "ANN102",  # missing-type-cls
+    "COM812",  # missing-trailing-comma
+    "ISC001",  # single-line-implicit-string-concatenation
+]
+select = ["ALL"]
+
+[tool.ruff.lint.flake8-annotations]
+allow-star-arg-any = true
+
+[tool.ruff.lint.isort]
+known-first-party = ["tap_csvfolder"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[build-system]
+requires = ["poetry-core==1.9.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+# CLI declaration
+tap-csvfolder = 'tap_csvfolder.tap:TapCSVFolder.cli'

@@ -1,0 +1,45 @@
+name: Test tap-csvfolder
+
+on:
+  push:
+    branches: [main]
+    paths:
+    - .github/workflows/test.yml
+    - tap_csvfolder/**
+    - tests/**
+    - poetry.lock
+    - pyproject.toml
+    - tox.ini
+  pull_request:
+    branches: [main]
+    paths:
+    - .github/workflows/test.yml
+    - tap_csvfolder/**
+    - tests/**
+    - poetry.lock
+    - pyproject.toml
+    - tox.ini
+  workflow_dispatch:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version:
+        - "3.9"
+        - "3.10"
+        - "3.11"
+        - "3.12"
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+    - run: pipx install tox
+    - name: Run Tox
+      run: |
+        python -Im tox -e $(echo py${{ matrix.python-version }} | tr -d .)

@@ -39,7 +39,7 @@ jobs:
     - uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
-    - run: pipx install tox
+    - uses: astral-sh/setup-uv@v3
     - name: Run Tox
       run: |
-        python -Im tox -e $(echo py${{ matrix.python-version }} | tr -d .)
+        uvx tox -e $(echo py${{ matrix.python-version }} | tr -d .)

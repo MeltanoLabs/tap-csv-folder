@@ -43,4 +43,4 @@ jobs:
     - uses: astral-sh/setup-uv@v3
     - name: Run Tox
       run: |
-        uvx tox -e $(echo py${{ matrix.python-version }} | tr -d .)
+        uvx --with tox-uv tox -e $(echo py${{ matrix.python-version }} | tr -d .)

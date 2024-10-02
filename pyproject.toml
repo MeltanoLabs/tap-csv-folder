@@ -25,7 +25,7 @@ python = ">=3.9"
 pytest = { version = ">=8", optional = true }
 
 [tool.poetry.dependencies.singer-sdk]
-git = "https://github.com/meltano/sdk.git"
+version = "~=0.41.0rc1"
 extras = ["s3", "ssh"]
 
 [tool.poetry.extras]

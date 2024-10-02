@@ -1,6 +1,6 @@
 # tap-csv-folder
 
-`tap-csv-folder` is a Singer tap for CSVFolder.
+`tap-csv-folder` is a Singer tap for CSV files stored in a folder on a local or remote filesystem.
 
 Built with the [Meltano Tap SDK](https://sdk.meltano.com) for Singer Taps.
 

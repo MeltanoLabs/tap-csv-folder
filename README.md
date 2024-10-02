@@ -37,7 +37,7 @@ meltano add tap-csv-folder
 | delimiter                  | False    | ,       | Field delimiter character.                                                                                            |
 | quotechar                  | False    | "       | Quote character.                                                                                                      |
 | escapechar                 | False    | None    | Escape character.                                                                                                     |
-| doublequote                | False    | 1       | Whether quotechar inside a field should be doubled.                                                                   |
+| doublequote                | False    | true    | Whether quotechar inside a field should be doubled.                                                                   |
 | lineterminator             | False    |         |                                                                                                                       |
 | Line terminator character. |          |         |                                                                                                                       |
 | filesystem                 | False    | local   | The filesystem to use.                                                                                                |

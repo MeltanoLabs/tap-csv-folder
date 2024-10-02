@@ -1729,8 +1729,8 @@ testing = ["pytest (>=7.2.1)"]
 [package.source]
 type = "git"
 url = "https://github.com/meltano/sdk.git"
-reference = "2648-feat-add-a-generic-filestream-interface"
-resolved_reference = "d6c4cc9202164351331725b1b16c7a92dccc0d33"
+reference = "HEAD"
+resolved_reference = "1442536f47ac83fc4b76ab8dd559b7bebebb734b"
 
 [[package]]
 name = "six"
@@ -2077,4 +2077,4 @@ testing = ["pytest"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9"
-content-hash = "89463579f1e122bf60e10e499fdecdac92499bd45463502acb01c537addcf5c9"
+content-hash = "daad819e9190cd6a97e312754f3d7e9218de698b08f94f0c4bca7819419e1f9f"

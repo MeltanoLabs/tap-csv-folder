@@ -26,7 +26,6 @@ pytest = { version = ">=8", optional = true }
 
 [tool.poetry.dependencies.singer-sdk]
 git = "https://github.com/meltano/sdk.git"
-rev = "2648-feat-add-a-generic-filestream-interface"
 extras = ["s3", "ssh"]
 
 [tool.poetry.extras]

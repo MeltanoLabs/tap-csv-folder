@@ -5,11 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "tap-csvfolder",
+            "name": "tap-csv-folder",
             "type": "debugpy",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "program": "tap_csvfolder",
+            "program": "tap_csv_folder",
             "justMyCode": false,
             "args": [
                 "--config",

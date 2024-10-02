@@ -1,6 +1,6 @@
-# tap-csvfolder
+# tap-csv-folder
 
-`tap-csvfolder` is a Singer tap for CSVFolder.
+`tap-csv-folder` is a Singer tap for CSVFolder.
 
 Built with the [Meltano Tap SDK](https://sdk.meltano.com) for Singer Taps.
 
@@ -11,7 +11,7 @@ Built with the [Meltano Tap SDK](https://sdk.meltano.com) for Singer Taps.
 Install from PyPi:
 
 ```bash
-pipx install tap-csvfolder
+pipx install tap-csv-folder
 ```
 
 -->
@@ -19,13 +19,13 @@ pipx install tap-csvfolder
 Install from GitHub:
 
 ```bash
-pipx install git+https://github.com/MeltanoLabs/tap-csvfolder.git@main
+pipx install git+https://github.com/MeltanoLabs/tap-csv-folder.git@main
 ```
 
 Install in a Meltano project:
 
 ```bash
-meltano add tap-csvfolder
+meltano add tap-csv-folder
 ```
 
 ## Configuration
@@ -92,7 +92,7 @@ A full list of supported settings and capabilities for this
 tap is available by running:
 
 ```bash
-tap-csvfolder --about
+tap-csv-folder --about
 ```
 
 ### Configure using environment variables
@@ -105,14 +105,14 @@ environment variable is set either in the terminal context or in the `.env` file
 
 ## Usage
 
-You can easily run `tap-csvfolder` by itself or in a pipeline using [Meltano](https://meltano.com/).
+You can easily run `tap-csv-folder` by itself or in a pipeline using [Meltano](https://meltano.com/).
 
 ### Executing the Tap Directly
 
 ```bash
-tap-csvfolder --version
-tap-csvfolder --help
-tap-csvfolder --config CONFIG --discover > ./catalog.json
+tap-csv-folder --version
+tap-csv-folder --help
+tap-csv-folder --config CONFIG --discover > ./catalog.json
 ```
 
 ## Developer Resources
@@ -135,10 +135,10 @@ Create tests within the `tests` subfolder and
 poetry run pytest
 ```
 
-You can also test the `tap-csvfolder` CLI interface directly using `poetry run`:
+You can also test the `tap-csv-folder` CLI interface directly using `poetry run`:
 
 ```bash
-poetry run tap-csvfolder --help
+poetry run tap-csv-folder --help
 ```
 
 ### Testing with [Meltano](https://www.meltano.com)
@@ -152,7 +152,7 @@ Next, install Meltano (if you haven't already) and any needed plugins:
 # Install meltano
 pipx install meltano
 # Initialize meltano within this directory
-cd tap-csvfolder
+cd tap-csv-folder
 meltano install
 ```
 
@@ -160,9 +160,9 @@ Now you can test and orchestrate using Meltano:
 
 ```bash
 # Test invocation:
-meltano invoke tap-csvfolder --version
+meltano invoke tap-csv-folder --version
 # OR run a test `elt` pipeline:
-meltano run tap-csvfolder target-jsonl
+meltano run tap-csv-folder target-jsonl
 ```
 
 ### SDK Dev Guide

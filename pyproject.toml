@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "MeltanoLabs-tap-csvfolder"
+name = "tap-csv-folder"
 version = "0.0.1"
 description = "Singer tap for CSVFolder, built with the Meltano Singer SDK."
 readme = "README.md"
@@ -17,9 +17,6 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
 ]
 license = "Apache-2.0"
-packages = [
-    { include = "tap_csvfolder" },
-]
 
 [tool.poetry.dependencies]
 python = ">=3.9"
@@ -43,7 +40,6 @@ python_version = "3.12"
 warn_unused_configs = true
 
 [tool.ruff]
-src = ["tap_csvfolder"]
 target-version = "py39"
 
 [tool.ruff.lint]
@@ -58,16 +54,13 @@ select = ["ALL"]
 [tool.ruff.lint.flake8-annotations]
 allow-star-arg-any = true
 
-[tool.ruff.lint.isort]
-known-first-party = ["tap_csvfolder"]
-
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
 [build-system]
-requires = ["poetry-core==1.9.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 # CLI declaration
-tap-csvfolder = 'tap_csvfolder.tap:TapCSVFolder.cli'
+tap-csv-folder = 'tap_csv_folder.tap:TapCSVFolder.cli'

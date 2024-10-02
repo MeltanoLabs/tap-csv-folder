@@ -1,4 +1,4 @@
-"""Test suite for tap-csvfolder."""
+"""Test suite for tap-csv-folder."""
 
 from __future__ import annotations
 
@@ -7,7 +7,7 @@ import datetime
 import pytest
 from singer_sdk.testing import SuiteConfig, get_tap_test_class
 
-from tap_csvfolder.tap import TapCSVFolder
+from tap_csv_folder.tap import TapCSVFolder
 
 _TestCSVMerge = get_tap_test_class(
     tap_class=TapCSVFolder,

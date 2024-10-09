@@ -1,6 +1,10 @@
+[build-system]
+requires = ["poetry-core", "poetry-dynamic-versioning"]
+build-backend = "poetry_dynamic_versioning.backend"
+
 [tool.poetry]
 name = "tap-csv-folder"
-version = "0.0.1"
+version = "0.0.0"
 description = "Singer tap for CSVFolder, built with the Meltano Singer SDK."
 readme = "README.md"
 authors = ["Edgar Ramírez-Mondragón <edgar@arch.dev>"]
@@ -32,6 +36,10 @@ extras = ["s3", "ssh"]
 [tool.poetry.extras]
 testing = ["pytest"]
 
+[tool.poetry.scripts]
+# CLI declaration
+tap-csv-folder = 'tap_csv_folder.tap:TapCSVFolder.cli'
+
 [tool.pytest.ini_options]
 addopts = '--durations=10'
 
@@ -57,10 +65,5 @@ allow-star-arg-any = true
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.scripts]
-# CLI declaration
-tap-csv-folder = 'tap_csv_folder.tap:TapCSVFolder.cli'
+[tool.poetry-dynamic-versioning]
+enable = true

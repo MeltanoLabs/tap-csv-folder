@@ -21,7 +21,15 @@ class CSVStream(FileStream):
     @property
     def primary_keys(self) -> t.Sequence[str]:
         """Return the primary key fields for records in this stream."""
-        return (SDC_META_FILEPATH, SDC_META_LINE_NUMBER)
+        if self._primary_keys is None:
+            self._primary_keys = (SDC_META_FILEPATH, SDC_META_LINE_NUMBER)
+
+        return self._primary_keys
+
+    @primary_keys.setter
+    def primary_keys(self, value: t.Sequence[str]) -> None:
+        """Set the primary key fields for records in this stream."""
+        self._primary_keys = value
 
     def get_schema(self, path: str) -> dict[str, t.Any]:
         """Return a schema for the given file."""

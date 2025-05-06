@@ -1,0 +1,129 @@
+capabilities:
+- about
+- batch
+- catalog
+- discover
+- schema-flattening
+- state
+- stream-maps
+description: Singer tap for CSV files in a local or remote folder.
+docs: https://github.com/MeltanoLabs/tap-csv-folder?tab=readme-ov-file
+label: CSV Folder
+logo_url: https://hub.meltano.com/assets/logos/extractors/csv.png
+name: tap-csv-folder
+namespace: tap_csv_folder
+pip_url: git+https://github.com/MeltanoLabs/tap-csv-folder.git
+repo: https://github.com/MeltanoLabs/tap-csv-folder
+settings:
+- name: delimiter
+  kind: string
+  label: Delimiter
+  description: Field delimiter character.
+
+- name: quotechar
+  kind: string
+  label: Quote Character
+  description: Field quote character.
+
+- name: escapechar
+  kind: string
+  label: Escape Character
+  description: Field escape character.
+
+- name: doublequote
+  kind: boolean
+  label: Double Quote
+  description: Whether quotechar inside a field should be doubled.
+
+- name: lineterminator
+  kind: string
+  label: Line Terminator
+  description: Line terminator character.
+
+- name: filesystem
+  kind: options
+  label: Filesystem
+  description: Filesystem to use for file operations.
+  options:
+  - label: Local
+    value: local
+  - label: FTP
+    value: ftp
+  - label: SFTP
+    value: sftp
+    
+- name: path
+  kind: string
+  label: Path
+  description: Path to the directory where the files are stored.
+
+- name: stream_name
+  kind: string
+  label: Stream Name
+  description: Name of the stream to use when `read_mode` is `merge`.
+
+- name: ftp.host
+  kind: string
+  label: FTP Host
+  description: FTP server host.
+
+- name: ftp.port
+  kind: integer
+  label: FTP Port
+  description: FTP server port.
+  
+- name: ftp.username
+  kind: string
+  label: FTP Username
+  description: FTP username.
+
+- name: ftp.password
+  kind: string
+  label: FTP Password
+  description: FTP password.
+  sensitive: true
+
+- name: ftp.timeout
+  kind: integer
+  label: FTP Timeout
+  description: Timeout of the FTP connection in seconds.
+
+- name: ftp.encoding
+  kind: string
+  label: FTP Encoding
+  description: FTP server encoding.
+
+- name: sftp.host
+  kind: string
+  label: SFTP Host
+  description: SFTP server host.
+
+- name: sftp.ssh_kwargs.port
+  kind: integer
+  label: SFTP Port
+  description: SFTP server port.
+
+- name: sftp.ssh_kwargs.username
+  kind: string
+  label: SFTP Username
+  description: SFTP username.
+
+- name: sftp.ssh_kwargs.password
+  kind: string
+  label: SFTP Password
+  description: SFTP password.
+  sensitive: true
+
+- name: sftp.ssh_kwargs.pkey
+  kind: string
+  label: Private Key
+  description: Private key.
+  sensitive: true
+
+- name: sftp.ssh_kwargs.timeout
+  kind: integer
+  label: SFTP Timeout
+  description: Timeout of the SFTP connection in seconds.
+
+settings_group_validation:
+- [filesystem, path]

@@ -25,7 +25,7 @@ pipx install git+https://github.com/MeltanoLabs/tap-csv-folder.git@main
 Install in a Meltano project:
 
 ```bash
-meltano add tap-csv-folder
+meltano add extractor tap-csv-folder --from-ref https://raw.githubusercontent.com/MeltanoLabs/tap-csv-folder/refs/heads/main/plugin.yml
 ```
 
 ## Configuration

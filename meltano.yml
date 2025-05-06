@@ -1,21 +1,31 @@
 version: 1
 send_anonymous_usage_stats: true
-project_id: "tap-csv-folder"
+project_id: tap-csv-folder
 default_environment: test
 environments:
 - name: test
+venv:
+  backend: uv
 plugins:
   extractors:
-  - name: "tap-csv-folder"
-    namespace: "tap_csv_folder"
+  - name: tap-csv-folder
+    namespace: tap_csv_folder
+    label: CSV Folder
+    docs: https://github.com/MeltanoLabs/tap-csv-folder?tab=readme-ov-file
+    repo: https://github.com/MeltanoLabs/tap-csv-folder
     pip_url: -e .
+    description: Singer tap for CSV files in a local or remote folder.
+    logo_url: https://hub.meltano.com/assets/logos/extractors/csv.png
     capabilities:
-    - state
+    - about
+    - batch
     - catalog
     - discover
-    - about
+    - schema-flattening
+    - state
     - stream-maps
-
+    settings_group_validation:
+    - [filesystem, path]
     settings:
     - name: delimiter
       kind: string
@@ -126,9 +136,6 @@ plugins:
       kind: integer
       label: SFTP Timeout
       description: Timeout of the SFTP connection in seconds.
-
-    settings_group_validation:
-    - [filesystem, path]
 
     config:
       start_date: '2010-01-01T00:00:00Z'

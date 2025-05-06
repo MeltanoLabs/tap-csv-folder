@@ -3,11 +3,16 @@
 from __future__ import annotations
 
 import datetime
+import typing as t
 
 import pytest
-from singer_sdk.testing import SuiteConfig, get_tap_test_class
+from singer_sdk.testing import SuiteConfig, TapTestRunner, get_tap_test_class
 
 from tap_csv_folder.tap import TapCSVFolder
+
+if t.TYPE_CHECKING:
+    from tap_csv_folder.client import CSVStream
+
 
 _TestCSVMerge = get_tap_test_class(
     tap_class=TapCSVFolder,
@@ -46,7 +51,7 @@ STATE = {
         "customers": {
             "partitions": [
                 {
-                    "context": {"_sdc_path": "fixtures/customers.csv"},
+                    "context": {"_sdc_path": "./customers.csv"},
                     "replication_key": "_sdc_modified_at",
                     "replication_key_value": FUTURE.isoformat(),
                 }
@@ -55,7 +60,7 @@ STATE = {
         "employees": {
             "partitions": [
                 {
-                    "context": {"_sdc_path": "fixtures/employees.csv"},
+                    "context": {"_sdc_path": "./employees.csv"},
                     "replication_key": "_sdc_modified_at",
                     "replication_key_value": FUTURE.isoformat(),
                 }
@@ -73,19 +78,34 @@ _TestCSVOneStreamPerFileIncremental = get_tap_test_class(
         "delimiter": "\t",
     },
     state=STATE,
-    suite_config=SuiteConfig(ignore_no_records=True),
 )
 
 
 class TestCSVOneStreamPerFileIncremental(_TestCSVOneStreamPerFileIncremental):
-    """Test tap in one 'stream per file' mode with incremental replication."""
+    """Test tap in one 'stream per file' incremental mode."""
 
-    @pytest.mark.xfail(reason="No records are extracted", strict=True)
-    def test_tap_stream_transformed_catalog_schema_matches_record(self, stream: str) -> None:
-        """This test shoould fail because no records are extracted for the bookmark."""
-        super().test_tap_stream_transformed_catalog_schema_matches_record(stream)
+    @pytest.mark.xfail(
+        reason="There are no records because the state is set to the future.",
+        strict=True,
+    )
+    def test_tap_stream_returns_record(
+        self,
+        config: SuiteConfig,
+        resource: t.Any,  # noqa: ANN401
+        runner: TapTestRunner,
+        stream: CSVStream,
+    ) -> None:
+        """Test that the tap stream returns records."""
+        super().test_tap_stream_returns_record(config, resource, runner, stream)
 
-    @pytest.mark.xfail(reason="No records are extracted", strict=True)
-    def test_tap_stream_returns_record(self, stream: str) -> None:
-        """This test shoould fail because no records are extracted for the bookmark."""
-        super().test_tap_stream_returns_record(stream)
+
+TestCSVOneStreamPerFileIncrementalIgnoreNoRecords = get_tap_test_class(
+    tap_class=TapCSVFolder,
+    config={
+        "path": "fixtures",
+        "read_mode": "one_stream_per_file",
+        "delimiter": "\t",
+    },
+    state=STATE,
+    suite_config=SuiteConfig(ignore_no_records=True),
+)

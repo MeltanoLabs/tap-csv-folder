@@ -30,7 +30,7 @@ python = ">=3.9"
 pytest = { version = ">=8", optional = true }
 
 [tool.poetry.dependencies.singer-sdk]
-version = "~=0.45.3"
+version = "~=0.46.0"
 extras = ["s3", "ssh"]
 
 [tool.poetry.extras]

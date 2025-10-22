@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 import csv
-import typing as t
+from typing import TYPE_CHECKING, Any
 
 from singer_sdk.contrib.filesystem import FileStream
 from singer_sdk.contrib.filesystem.stream import SDC_META_FILEPATH
 
-if t.TYPE_CHECKING:
+if TYPE_CHECKING:
+    from collections.abc import Iterable, Sequence
+
     from singer_sdk.helpers.types import Record
 
 
@@ -19,7 +21,7 @@ class CSVStream(FileStream):
     """CSV stream class."""
 
     @property
-    def primary_keys(self) -> t.Sequence[str]:
+    def primary_keys(self) -> Sequence[str]:
         """Return the primary key fields for records in this stream."""
         if self._primary_keys is None:
             self._primary_keys = (SDC_META_FILEPATH, SDC_META_LINE_NUMBER)
@@ -27,11 +29,11 @@ class CSVStream(FileStream):
         return self._primary_keys
 
     @primary_keys.setter
-    def primary_keys(self, value: t.Sequence[str]) -> None:
+    def primary_keys(self, value: Sequence[str]) -> None:
         """Set the primary key fields for records in this stream."""
         self._primary_keys = value
 
-    def get_schema(self, path: str) -> dict[str, t.Any]:
+    def get_schema(self, path: str) -> dict[str, Any]:
         """Return a schema for the given file."""
         with self.filesystem.open(path, mode="r") as file:
             reader = csv.DictReader(
@@ -42,14 +44,17 @@ class CSVStream(FileStream):
                 doublequote=self.config["doublequote"],
                 lineterminator=self.config["lineterminator"],
             )
-            schema = {
+            schema: dict[str, Any] = {
                 "type": "object",
-                "properties": {key: {"type": "string"} for key in reader.fieldnames},
+                "properties": {
+                    key: {"type": "string"}  # By default all fields are strings
+                    for key in reader.fieldnames or []
+                },
             }
-            schema["properties"][SDC_META_LINE_NUMBER] = {"type": "integer"}
+            schema["properties"][SDC_META_LINE_NUMBER] = {"type": "integer"}  # ty: ignore[possibly-missing-implicit-call]
             return schema
 
-    def read_file(self, path: str) -> t.Iterable[Record]:
+    def read_file(self, path: str) -> Iterable[Record]:
         """Read the given file and emit records."""
         with self.filesystem.open(path, mode="r") as file:
             reader = csv.DictReader(

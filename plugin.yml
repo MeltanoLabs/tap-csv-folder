@@ -51,7 +51,7 @@ settings:
     value: ftp
   - label: SFTP
     value: sftp
-    
+
 - name: path
   kind: string
   label: Path
@@ -71,7 +71,7 @@ settings:
   kind: integer
   label: FTP Port
   description: FTP server port.
-  
+
 - name: ftp.username
   kind: string
   label: FTP Username

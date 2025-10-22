@@ -25,7 +25,7 @@ _TestCSVMerge = get_tap_test_class(
 )
 
 
-class TestCSVMerge(_TestCSVMerge):
+class TestCSVMerge(_TestCSVMerge):  # type: ignore[misc,valid-type]
     """Test tap in file merge mode."""
 
 
@@ -39,7 +39,7 @@ _TestCSVOneStreamPerFile = get_tap_test_class(
 )
 
 
-class TestCSVOneStreamPerFile(_TestCSVOneStreamPerFile):
+class TestCSVOneStreamPerFile(_TestCSVOneStreamPerFile):  # type: ignore[misc,valid-type]
     """Test tap in one 'stream per file' mode."""
 
 
@@ -81,7 +81,7 @@ _TestCSVOneStreamPerFileIncremental = get_tap_test_class(
 )
 
 
-class TestCSVOneStreamPerFileIncremental(_TestCSVOneStreamPerFileIncremental):
+class TestCSVOneStreamPerFileIncremental(_TestCSVOneStreamPerFileIncremental):  # type: ignore[misc,valid-type]
     """Test tap in one 'stream per file' incremental mode."""
 
     @pytest.mark.xfail(

@@ -1751,7 +1751,6 @@ wheels = [
 
 [[package]]
 name = "tap-csv-folder"
-version = "0.0.0"
 source = { editable = "." }
 dependencies = [
     { name = "singer-sdk", extra = ["s3", "ssh"] },

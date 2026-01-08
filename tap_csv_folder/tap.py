@@ -8,7 +8,7 @@ from singer_sdk.contrib.filesystem import FolderTap
 from tap_csv_folder.client import CSVStream
 
 
-class TapCSVFolder(FolderTap):
+class TapCSVFolder(FolderTap[CSVStream]):
     """Singer tap for CSV files in a folder."""
 
     name = "tap-csv-folder"

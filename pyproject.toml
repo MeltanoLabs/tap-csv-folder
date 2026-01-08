@@ -29,7 +29,7 @@ dev = [
     { include-group = "typing" },
 ]
 testing = [
-    "pytest>=8",
+    "pytest>=9",
 ]
 typing = [
     { include-group = "testing" },
@@ -48,11 +48,30 @@ build-backend = "hatchling.build"
 fallback-version = "0.0.0"
 source = "vcs"
 
-[tool.pytest.ini_options]
-addopts = '--durations=10'
+[tool.pytest]
+addopts = [
+  "--durations=10",
+  "-ra",
+  "--strict-config",
+  "--strict-markers",
+]
+filterwarnings = [
+  "error",
+  "once:No records were available to test:UserWarning",
+]
+log_level = "INFO"
+minversion = "9"
+testpaths = ["tests"]
+xfail_strict = true
 
 [tool.mypy]
-python_version = "3.13"
+enable_error_code = [
+    "ignore-without-code",
+    "redundant-expr",
+    "truthy-bool",
+]
+strict = true
+warn_unreachable = true
 warn_unused_configs = true
 
 [tool.ruff.lint]

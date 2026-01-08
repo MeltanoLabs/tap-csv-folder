@@ -7,25 +7,30 @@ on:
     - .github/workflows/test.yml
     - tap_csv_folder/**
     - tests/**
-    - poetry.lock
     - pyproject.toml
     - tox.ini
+    - uv.lock
   pull_request:
     branches: [main]
     paths:
     - .github/workflows/test.yml
     - tap_csv_folder/**
     - tests/**
-    - poetry.lock
     - pyproject.toml
     - tox.ini
+    - uv.lock
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   FORCE_COLOR: 1
 
 jobs:
   pytest:
+    name: Integration
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false

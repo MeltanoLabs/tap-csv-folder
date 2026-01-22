@@ -40,10 +40,4 @@ class TapCSVFolder(FolderTap[CSVStream]):
             default=True,
             description="Whether quotechar inside a field should be doubled.",
         ),
-        th.Property(
-            "lineterminator",
-            th.StringType,
-            default="\r\n",
-            description="Line terminator character.",
-        ),
     ).to_dict()

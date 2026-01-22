@@ -20,7 +20,9 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
+    "pyarrow",
     "singer-sdk[s3, ssh]~=0.53.2",
+    "typing-extensions>=4.15.0 ; python_full_version < '3.12'",
 ]
 
 [dependency-groups]
@@ -34,6 +36,7 @@ testing = [
 typing = [
     { include-group = "testing" },
     "mypy>=1.18.2",
+    "pyarrow-stubs>=20.0.0.20251215",
     "ty>=0.0.1a23",
 ]
 

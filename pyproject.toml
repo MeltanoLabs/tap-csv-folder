@@ -21,7 +21,7 @@ classifiers = [
 ]
 dependencies = [
     "pyarrow",
-    "singer-sdk[s3, ssh]~=0.53.2",
+    "singer-sdk[s3, ssh]>=0.53.2,<0.55.0",
     "typing-extensions>=4.15.0 ; python_full_version < '3.12'",
 ]
 

@@ -59,7 +59,7 @@ addopts = [
 filterwarnings = [
   "error",
   "once:No records were available to test:UserWarning",
-  "once:Python .* will reach its end of life:singer_sdk.helpers._compat.SingerSDKPythonEOLWarning",
+  "once:Python .* reached its end of life:FutureWarning",
 ]
 log_level = "INFO"
 minversion = "9"

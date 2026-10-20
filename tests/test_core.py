@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import datetime
+import datetime as dt
 import typing as t
 
 import pytest
@@ -44,7 +44,7 @@ class TestCSVOneStreamPerFile(_TestCSVOneStreamPerFile):  # type: ignore[misc,va
 
 
 # Three days into the future.
-FUTURE = datetime.datetime.now(tz=datetime.timezone.utc) + datetime.timedelta(days=3)
+FUTURE = dt.datetime.now(tz=dt.timezone.utc) + dt.timedelta(days=3)
 
 STATE = {
     "bookmarks": {
@@ -91,7 +91,7 @@ class TestCSVOneStreamPerFileIncremental(_TestCSVOneStreamPerFileIncremental):  
     def test_tap_stream_returns_record(
         self,
         config: SuiteConfig,
-        resource: t.Any,  # noqa: ANN401
+        resource: t.Any,  # ruff: ignore[any-type]
         runner: TapTestRunner,
         stream: CSVStream,
     ) -> None:

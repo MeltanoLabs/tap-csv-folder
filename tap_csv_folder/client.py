@@ -51,7 +51,11 @@ def pyarrow_type_to_jsonschema(
     *,
     nullable: bool = False,
 ) -> dict[str, Any]:
-    """Convert a PyArrow type to a JSON Schema type."""
+    """Convert a PyArrow type to a JSON Schema type.
+
+    Returns:
+        A dictionary containing the JSON schema.
+    """
     type_str = str(pa_type)
     # Handle parameterized types like timestamp[us, tz=UTC]
     base_type = type_str.split("[", maxsplit=1)[0]
@@ -70,7 +74,7 @@ class CSVStream(FileStream):
     @override
     @property
     def primary_keys(self) -> Sequence[str]:
-        """Return the primary key fields for records in this stream."""
+        """The primary key fields for records in this stream."""
         if self._primary_keys is None:
             self._primary_keys = (SDC_META_FILEPATH, SDC_META_LINE_NUMBER)
 
@@ -113,7 +117,11 @@ class CSVStream(FileStream):
 
     @override
     def read_file(self, path: str) -> Iterable[Record]:
-        """Read the given file and emit records."""
+        """Read the given file and emit records.
+
+        Yields:
+            Each row as a dictionary.
+        """
         with self.filesystem.open(path, mode="rb") as file:
             # Use streaming reader to avoid loading entire file into memory
             reader = pyarrow.csv.open_csv(file, parse_options=self._get_parse_options())
